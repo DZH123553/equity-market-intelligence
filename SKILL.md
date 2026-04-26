@@ -1,12 +1,12 @@
 ---
 name: equity-market-intelligence
-description: Daily secondary market intelligence for a long-only investor focused on Hong Kong and US equities, especially technology, semiconductors, Chinese tech ADRs, and AI/robotics/crypto-related stocks. Triggers when the user asks for "stock market report", "二级日报", "港股美股", "equity daily", "market wrap", "盘面", or when scheduling daily research on HK/US stock markets. Generates a structured daily market brief with macro, sector rotation, stock-specific moves, earnings tracking, and IB research notes, saved as markdown + docx.
+description: Daily secondary market intelligence for a long-only investor focused on Hong Kong and US equities, especially technology, semiconductors, Chinese tech ADRs, and AI/robotics/crypto-related stocks. Triggers when the user asks for "stock market report", "二级日报", "港股美股", "equity daily", "market wrap", "盘面", or when scheduling daily research on HK/US stock markets. Generates a structured daily market brief with macro, sector rotation, stock-specific moves, earnings tracking, IB research notes, and actionable recommendations, saved as markdown + docx.
 ---
 
 # Equity Market Intelligence — Daily Brief Generator
 
 ## Purpose
-Generate a focused daily brief covering Hong Kong and US secondary market movements from the last 24 hours. Long-only perspective only. Covers macro drivers, sector rotation, key stock moves, earnings season tracking, and major investment bank research.
+Generate a focused daily brief covering Hong Kong and US secondary market movements from the last 24 hours. Long-only perspective only. Covers macro drivers, sector rotation, key stock moves, earnings season tracking, major investment bank research, and actionable directional views.
 
 ## Pre-Flight Checklist
 
@@ -26,12 +26,14 @@ Launch 5 parallel SearchWeb bundles:
 - **Bundle C — Sector Rotation & Thematic** (3-4 queries)
 - **Bundle D — Earnings Season** (2-3 queries)
 - **Bundle E — IB Research & Sentiment** (2-3 queries)
+- **Bundle F — Real-time Signals** (2-3 queries: X/Twitter, Reuters breaking, Bloomberg)
 
 Priority sources:
 - US: WSJ, Reuters, Bloomberg, Schwab, Yahoo Finance, Barchart
 - HK: 财联社, 华尔街见闻, 华盛通, 格隆汇, 雪球, Xinhua
 - IB Research: Morgan Stanley, Goldman Sachs, JPMorgan, Bernstein
-- X/Twitter: @DeItaone, @FirstSquawk, @unusual_whales, @Market_Reacts
+- Real-time: X/Twitter (@DeItaone, @FirstSquawk, @unusual_whales, @Market_Reacts), Reuters breaking news, Bloomberg terminal-equivalent web
+- Macro: Fed watchers, geopolitical analysts, commodity desks
 
 ### Phase 2: Deduplication & Signal Filtering
 
@@ -63,41 +65,27 @@ Generate `Equity_Daily_Brief_YYYYMMDD.md`:
 
 ---
 
-## 一、大盘概览
-
-### 美股
-- S&P 500: [level] ([change])
-- Nasdaq Composite: [level] ([change])
-- Dow Jones: [level] ([change])
-- Russell 2000: [level] ([change])
-- VIX: [level]
-
-### 港股
-- Hang Seng Index: [level] ([change])
-- Hang Seng Tech Index: [level] ([change])
-- Hang Seng China Enterprises: [level] ([change])
-
-### A股（参考）
-- 上证指数: [level] ([change])
-- 深证成指: [level] ([change])
-- 创业板指: [level] ([change])
-
----
-
-## 二、宏观与政策
+## 一、宏观与政策
 
 ### 美联储与利率
-[Rate decisions, Fed speakers, treasury yield moves, market pricing of cuts/hikes]
+[Rate decisions, Fed speakers, treasury yield moves, market pricing of cuts/hikes. Cite sources: Reuters, Bloomberg, WSJ, X/Twitter Fed watchers.]
 
 ### 地缘政治与大宗
-[Middle East, US-China, oil prices, gold, USD/CNH, and their market impact]
+[Middle East, US-China, oil prices, gold, USD/CNH, and their market impact. Cite sources: Reuters breaking, Bloomberg, X geopolitical accounts.]
 
 ### 中国政策
-[PBOC, fiscal stimulus, regulatory changes impacting HK-listed Chinese companies]
+[PBOC, fiscal stimulus, regulatory changes impacting HK-listed Chinese companies. Cite sources: 财联社, 华尔街见闻.]
+
+### 宏观判断
+[Based on the above facts, write directional views on asset prices:
+- What macro factors are likely to be bullish/bearish for which sectors/stocks in the near term?
+- What is the market currently underpricing or overpricing?
+- Which macro narratives are gaining/losing momentum?
+Frame as analytical judgment grounded in facts, not predictions.]
 
 ---
 
-## 三、板块轮动
+## 二、板块轮动
 
 ### 领涨板块
 [Sector, representative stocks, catalyst]
@@ -110,7 +98,7 @@ Generate `Equity_Daily_Brief_YYYYMMDD.md`:
 
 ---
 
-## 四、重点个股动态
+## 三、重点个股动态
 
 ### 科技股 / 半导体
 [NVDA, AMD, INTC, TSM, AVGO, etc. — news, price move, catalyst]
@@ -126,7 +114,7 @@ Generate `Equity_Daily_Brief_YYYYMMDD.md`:
 
 ---
 
-## 五、财报季跟踪
+## 四、财报季跟踪
 
 ### 今日发布
 | 公司 | 预期 EPS | 实际 EPS | 预期营收 | 实际营收 | 盘后反应 |
@@ -138,7 +126,7 @@ Generate `Equity_Daily_Brief_YYYYMMDD.md`:
 
 ---
 
-## 六、投行研报
+## 五、投行研报
 
 ### 上调
 | 公司 | 投行 | 评级变化 | 目标价 | 核心逻辑 |
@@ -150,15 +138,19 @@ Generate `Equity_Daily_Brief_YYYYMMDD.md`:
 
 ---
 
-## 七、今日关注
+## 六、机会与推荐
 
-[Specific stocks/sectors worth watching tomorrow, based on earnings calendar, macro catalysts, or technical levels. Long-only perspective only.]
+[Based on today's market facts, macro trends, sector rotation, earnings calendar, and IB research, provide actionable directional views:
 
----
+1. **短期机会** (1-5 trading days): Specific stocks/sectors where today's catalyst creates a near-term setup. Explain the logic.
+2. **中期布局** (1-4 weeks): Themes or sectors worth accumulating on weakness or riding momentum. Explain the thesis.
+3. **风险预警**: Specific stocks/sectors facing near-term headwinds where caution is warranted.
 
-## 八、市场火花
-
-[Connect today's market facts to broader investment themes: AI capex cycle, China tech valuation reset, rate cut/hike implications, geopolitical risk pricing, etc. Analytical but grounded in facts. No price targets or trading recommendations.]
+Rules:
+- Long-only only. No short recommendations. Frame downside as "risk to watch" or "caution warranted".
+- Each recommendation must be grounded in today's factual signals.
+- Include specific stock names and ticker symbols where possible.
+- State conviction level (高/中/低) and time horizon for each idea.]
 
 ---
 
@@ -167,13 +159,15 @@ Generate `Equity_Daily_Brief_YYYYMMDD.md`:
 
 ### Writing Rules
 
-1. **Facts only in sections 1-7**: No evaluative language. No "this proves...". Save analysis for section 8.
+1. **Facts only in sections 1-5**: No evaluative language. No "this proves...". Save directional views for section 6.
 2. **Long-only only**: No short recommendations. Frame downside as "risk to watch" or "potential headwind".
 3. **First-time companies**: Every stock/company mentioned for the first time in any brief gets 1 sentence: what it does, market cap tier, key business.
 4. **Earnings accuracy**: Always include expected vs actual. Note if it's a beat, miss, or in-line.
 5. **No repetition**: Skip signals already covered in prior briefs with no material update.
 6. **Concise**: Each signal 2-4 sentences max. Each stock entry 2-3 sentences.
 7. **Bilingual**: English company names with Chinese translations where helpful.
+8. **Macro judgment (section 1.4)**: Must cite specific sources (Reuters, Bloomberg, X accounts) for each directional view. Do not invent macro facts.
+9. **Recommendations (section 6)**: Must tie back to specific signals from sections 1-5. No standalone opinions without factual grounding.
 
 ## Output & Delivery
 
@@ -193,5 +187,5 @@ Generate `Equity_Daily_Brief_YYYYMMDD.md`:
 - Do NOT make price predictions.
 - Do NOT include signals older than 48 hours unless materially updated today.
 - Do NOT repeat yesterday's signals.
-- Do NOT write evaluative language outside section 8.
+- Do NOT write evaluative language outside sections 1.4 and 6.
 - Do NOT spend more than 20 minutes on research.

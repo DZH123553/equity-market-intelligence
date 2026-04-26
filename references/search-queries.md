@@ -4,10 +4,31 @@ All queries scoped to last 24 hours when possible. Use date filters.
 
 ## Core Sources
 - Wall Street Journal, Reuters, Bloomberg, Financial Times
-- X/Twitter: @DeItaone, @FirstSquawk, @unusual_whales, @Market_Reacts
+- X/Twitter: @DeItaone, @FirstSquawk, @unusual_whales, @Market_Reacts, @FedGuy12, @DollarMatrix, @wmiddelkoop
 - Morgan Stanley research, Goldman Sachs research, JPMorgan research, Bernstein
 - 财联社, 华尔街见闻, 格隆汇, 雪球, 华盛通
 - HKEX announcements, SEC filings
+
+## Real-time / Breaking News
+
+### X/Twitter Market Signals
+- `site:twitter.com OR site:x.com DeItaone market today`
+- `site:twitter.com OR site:x.com FirstSquawk breaking today`
+- `site:twitter.com OR site:x.com unusual_whales options flow today`
+- `site:twitter.com OR site:x.com Market_Reacts stock move today`
+- `site:twitter.com OR site:x.com FedGuy12 Fed rates today`
+
+### Reuters Breaking
+- `Reuters breaking news markets today`
+- `Reuters Fed interest rates today`
+- `Reuters China economy policy today`
+- `Reuters Middle East oil today`
+
+### Bloomberg
+- `Bloomberg markets wrap today`
+- `Bloomberg Fed chair Powell today`
+- `Bloomberg China tech stocks today`
+- `Bloomberg oil prices geopolitics today`
 
 ## US Market Overview & Macro
 
@@ -93,12 +114,15 @@ All queries scoped to last 24 hours when possible. Use date filters.
 - `US Iran conflict impact stocks today`
 - `China tariffs trade war impact stocks today`
 - `Federal Reserve meeting minutes today`
+- `US inflation PCE CPI today`
+- `US jobless claims labor market today`
 
 ### Chinese
 - `原油 油价 今日 中东`
 - `黄金 价格 今日`
 - `中美 关税 贸易 今日 影响`
 - `美联储 会议纪要 今日`
+- `中国 经济 数据 今日`
 
 ## Query Strategy
 - Prioritize "today" / "yesterday" / specific date
@@ -106,4 +130,5 @@ All queries scoped to last 24 hours when possible. Use date filters.
 - Check multiple sources for index closing levels to cross-verify
 - For IB research: focus on actual rating changes with price targets, not generic commentary
 - For earnings: always verify expected vs actual numbers
+- For macro judgment: combine Reuters + Bloomberg + X/Twitter for triangulation
 - Skip: technical chart analysis, short-sell recommendations, price predictions
